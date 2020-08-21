@@ -9,7 +9,8 @@
 #include <sys/sysctl.h>
 
 
-MODULE = OpenBSD::KvmGetFiles		PACKAGE = OpenBSD::KvmGetFiles		
+MODULE = OpenBSD::KvmFiles		PACKAGE = OpenBSD::KvmFiles		
+PROTOTYPES: ENABLE
 
 int
 _fd_per_process(int pid)

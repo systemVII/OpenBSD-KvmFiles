@@ -13,8 +13,12 @@ Version 0.01
 
 =cut
 
+use parent 'Exporter';
+our @ISA = qw(Exporter);
 our $VERSION = '0.01';
-
+our @EXPORT = qw(KvmGetFilesAmount);
+require XSLoader;
+XSLoader::load( 'OpenBSD::KvmFiles', $VERSION );
 
 =head1 SYNOPSIS
 
@@ -22,7 +26,7 @@ Use kvm_getfiles to extract number of openend file of a process.
 
     use OpenBSD::KvmFiles;
 
-    my $opened_file = KvmGetFiles($pid);
+    my $opened_file = KvmGetFilesAmount($pid);
     ...
 
 =head1 EXPORT
@@ -35,7 +39,9 @@ KvmGetFiles
 
 =cut
 
-sub KvmGetFiles {
+sub KvmGetFilesAmount {
+    my $pid = int $_[0];
+    return _fd_per_process($pid);
 }
 
 =head1 AUTHOR
