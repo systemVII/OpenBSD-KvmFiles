@@ -11,5 +11,6 @@ my $fds = KvmGetFilesAmount($$);
 # this is unsafe, so dont do it
 # my @ofd = `/usr/bin/fstat -p $$`;
 # is($fds,$#ofd)
-
-diag( "Testing OpenBSD::KvmFiles $OpenBSD::KvmFiles::VERSION, Perl $], $^X, #$fds fd opened" );
+my $fdinfo = KvmGetFilesInfo($$);
+my $n = scalar @$fdinfo;
+diag( "Testing OpenBSD::KvmFiles $OpenBSD::KvmFiles::VERSION, Perl $], $^X, #$fds / #$n fd opened" );

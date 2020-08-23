@@ -16,7 +16,7 @@ Version 0.01
 use parent 'Exporter';
 our @ISA = qw(Exporter);
 our $VERSION = '0.01';
-our @EXPORT = qw(KvmGetFilesAmount);
+our @EXPORT = qw(KvmGetFilesAmount KvmGetFilesInfo);
 require XSLoader;
 XSLoader::load( 'OpenBSD::KvmFiles', $VERSION );
 
@@ -35,7 +35,9 @@ KvmGetFiles
 
 =head1 SUBROUTINES/METHODS
 
-=head2 function1
+=head2 KvmGetFilesAmount
+
+Return the count of opened FD for a process or all if PID is -1
 
 =cut
 
@@ -44,17 +46,25 @@ sub KvmGetFilesAmount {
     return _fd_per_process($pid);
 }
 
+=head2 KvmGetFilesInfo
+
+Return an array ref of opened FD for a process or all if PID = -1
+
+=cut
+
+sub KvmGetFilesInfo {
+    my $pid = int $_[0];
+    return _fd_info_per_process($pid);
+}
+
 =head1 AUTHOR
 
 Dohnuts, C<< <dohnuts at no-reply.github.org> >>
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-openbsd-kvmfiles at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=OpenBSD-KvmFiles>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
-
-
+Please report any bugs or feature requests to https://github.com/systemVII/OpenBSD-KvmFiles/issues.
+I will be notified, and then you'll automatically be notified of progress on your bug as I make changes.
 
 
 =head1 SUPPORT
@@ -68,10 +78,9 @@ You can also look for information at:
 
 =over 4
 
-=item * RT: CPAN's request tracker
+=item * github: a code repository
 
 L<https://github.com/systemVII/OpenBSD-KvmFiles>
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=OpenBSD-KvmFiles>
 
 =item * AnnoCPAN: Annotated CPAN documentation
 
@@ -104,4 +113,4 @@ See http://dev.perl.org/licenses/ for more information.
 
 =cut
 
-1; # End of OpenBSD::KvmFiles
+'I must not fear. Fear is the mind-killer...';
