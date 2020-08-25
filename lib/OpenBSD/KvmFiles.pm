@@ -29,6 +29,14 @@ Use kvm_getfiles to extract number of openend file of a process.
     my $opened_file = KvmGetFilesAmount($pid);
     ...
 
+
+# some const here to define
+#define DTYPE_VNODE     1       /* file */
+#define DTYPE_SOCKET    2       /* communications endpoint */
+#define DTYPE_PIPE      3       /* pipe */
+#define DTYPE_KQUEUE    4       /* event queue */
+#define DTYPE_DMABUF    5       /* DMA buffer (for DRM) */
+
 =head1 EXPORT
 
 KvmGetFiles
@@ -49,6 +57,17 @@ sub KvmGetFilesAmount {
 =head2 KvmGetFilesInfo
 
 Return an array ref of opened FD for a process or all if PID = -1
+
+[
+ {
+"type" => type of fd
+"usecount" => referenced and use fd count
+"read_bytes" => read bytes
+"write_bytes" => written bytes
+if type is a file (DTYPE_VNODE)
+"path" =>  path of fd
+ },...
+]
 
 =cut
 
