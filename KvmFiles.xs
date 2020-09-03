@@ -49,6 +49,12 @@ _fd_info_per_process(int pid)
 			hv_store(hash, "usecount", strlen("usecount"), newSVnv(kf[i].f_usecount), 0);
 			hv_store(hash, "read_bytes", strlen("read_bytes"), newSVnv(kf[i].f_rbytes), 0);
 			hv_store(hash, "write_bytes", strlen("write_bytes"), newSVnv(kf[i].f_wbytes), 0);
+
+
+			hv_store(hash, "uid", 3, newSVnv(kf[i].f_uid), 0);
+			hv_store(hash, "gid", 3, newSVnv(kf[i].f_gid), 0);
+			hv_store(hash, "pid", 3, newSVnv(kf[i].p_pid), 0);
+
 			switch ( kf[i].f_type ) {
 				case DTYPE_VNODE: /* file */
 					hv_store(hash, "path", strlen("path"), newSVpvf("%s", kf[i].f_mntonname), 0);
