@@ -9,13 +9,13 @@ OpenBSD::KvmFiles - OpenBSD kvm_getfiles.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
 use parent 'Exporter';
 our @ISA = qw(Exporter);
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 our @EXPORT = qw(KvmGetFilesAmount KvmGetFilesInfo);
 require XSLoader;
 XSLoader::load( 'OpenBSD::KvmFiles', $VERSION );

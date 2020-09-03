@@ -1,5 +1,9 @@
 Revision history for OpenBSD-KvmFiles
 
-0.01    Date/time
+0.01    2020-08-15 
         First version, released on an unsuspecting world.
+
+0.02    2020-09-03
+        Release version, add details in fd list.
+
 
